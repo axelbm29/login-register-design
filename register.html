@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Usuario</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ellipse-top-container">
+      <img
+        src="img/elipse-register.webp"
+        alt="Elipse Superior"
+        class="ellipse-top"
+      />
+    </div>
+    <div class="ellipse-container">
+      <img src="img/elipse-register.webp" alt="Elipse" class="ellipse" />
+    </div>
+
+    <div class="container-register">
+      <div class="logo-register">
+        <img src="img/logo-restobar.webp" alt="Logo Villa 29" />
+      </div>
+      <form class="register-form">
+        <h2>Registro de Usuario</h2>
+        <label for="nombre" class="label-register">Nombre</label>
+        <input type="text" id="nombre" placeholder="ej. John" />
+
+        <label for="apellido" class="label-register">Apellido</label>
+        <input type="text" id="apellido" placeholder="ej. Doe" />
+
+        <label for="email" class="label-register">Correo electrónico</label>
+        <input type="email" id="email" placeholder="ej. johndoe@ejemplo.com" />
+
+        <label for="password" class="label-register">Contraseña</label>
+        <input type="password" id="password" placeholder="ej. johndoe123" />
+
+        <label for="rol" class="label-register">Rol que desempeña</label>
+        <select id="rol">
+          <option value="">Seleccionar rol</option>
+          <option value="admin">Administrador</option>
+          <option value="user">Usuario</option>
+        </select>
+
+        <button type="submit">Registrar</button>
+      </form>
+    </div>
+
+    <div class="ellipse-bottom-container">
+      <img
+        src="img/elipse-register.webp"
+        alt="Elipse Inferior"
+        class="ellipse-bottom"
+      />
+    </div>
+
+    <div class="ellipse2-bottom-container">
+      <img
+        src="img/elipse-register.webp"
+        alt="Elipse Inferior"
+        class="ellipse2-bottom"
+      />
+    </div>
+  </body>
+</html>
