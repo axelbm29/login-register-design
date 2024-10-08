@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Pedidos</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body class="no-scroll">
+    <div
+      class="top-bar d-flex justify-content-between align-items-center p-3 bg-dark text-white"
+    >
+      <div class="logo-container">
+        <img
+          src="img/logo-restobar.webp"
+          alt="Logo"
+          class="img-logo-crearPedido"
+        />
+      </div>
+      <div class="user-info text-end">
+        <span style="font-weight: bold; color: #fff">Diego Otazú</span><br />
+        <span style="color: #b3b3b3">Mozo/cajero</span>
+      </div>
+    </div>
+
+    <div class="container-fluid pt-3">
+      <div class="row">
+        <div class="left-column col-md-4 bg-light p-3">
+          <h5>Orden: #100</h5>
+          <p>FECHA: ****</p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>P. Unitario</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>H. Clásica</td>
+                <td>1</td>
+                <td>s/10.90</td>
+                <td>s/10.90</td>
+              </tr>
+              <tr>
+                <td>A. BBQ</td>
+                <td>2</td>
+                <td>s/16.00</td>
+                <td>s/32.00</td>
+              </tr>
+              <tr>
+                <td>Pollo a la plancha</td>
+                <td>1</td>
+                <td>s/16.00</td>
+                <td>s/16.00</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-between">
+            <span>Subtotal:</span>
+            <span>s/58.90</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span>Descuentos:</span>
+            <span>s/0.00</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <strong>Total:</strong>
+            <strong>s/58.90</strong>
+          </div>
+          <div class="mt-4">
+            <button class="btn btn-success w-100 mb-2">Guardar</button>
+            <button class="btn btn-secondary w-100 mb-2">Imprimir</button>
+            <button class="btn btn-primary w-100">Enviar</button>
+          </div>
+        </div>
+
+        <div class="right-column col-md-8">
+          <div class="category-container position-relative">
+            <button class="arrow left-arrow" id="left-arrow">
+              <i class="bi bi-chevron-left"></i>
+            </button>
+
+            <div class="category-list d-flex mt-3" id="category-list">
+              <button class="btn-lista-tipoComida">Hamburguesas</button>
+              <button class="btn-lista-tipoComida">Adicionales</button>
+              <button class="btn-lista-tipoComida">Alitas</button>
+              <button class="btn-lista-tipoComida">Salchipapas</button>
+              <button class="btn-lista-tipoComida">Platos a la carta</button>
+              <button class="btn-lista-tipoComida">Piqueos</button>
+              <button class="btn-lista-tipoComida">Refrescos</button>
+              <button class="btn-lista-tipoComida">Gaseosas</button>
+              <button class="btn-lista-tipoComida">Tragos</button>
+              <button class="btn-lista-tipoComida">Cocteles</button>
+              <button class="btn-lista-tipoComida">Vinos</button>
+              <button class="btn-lista-tipoComida">Jarras</button>
+              <button class="btn-lista-tipoComida">Juegos</button>
+            </div>
+
+            <button class="arrow right-arrow" id="right-arrow">
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
+
+          <div class="line"></div>
+          <div class="row">
+            <div class="col-6 col-md-4 mb-3">
+              <div class="card">
+                <img
+                  src="img/alitas-bbq.jpg"
+                  class="card-img-top"
+                  alt="Alitas BBQ"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Alitas BBQ</h5>
+                  <p class="card-text">s/16.00</p>
+                  <button class="btn btn-primary">Añadir</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 mb-3">
+              <div class="card">
+                <img
+                  src="img/alitas-bbq.jpg"
+                  class="card-img-top"
+                  alt="Alitas BBQ"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Alitas BBQ</h5>
+                  <p class="card-text">s/16.00</p>
+                  <button class="btn btn-primary">Añadir</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js.js"></script>
+  </body>
+</html>
