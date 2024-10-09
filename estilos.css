@@ -240,11 +240,11 @@ p {
   overflow: hidden;
   display: flex;
   white-space: nowrap;
-  margin-top: 10px;
+  margin: 10px 50px 0 50px;
 }
 
 .btn-lista-tipoComida.selected {
-  background-color: #FF6060; /* Color de fondo cuando el botón está seleccionado */
+  background-color: #ff6060; /* Color de fondo cuando el botón está seleccionado */
   color: white; /* Cambia el color del texto cuando está seleccionado */
   border-radius: 5px;
 }
@@ -269,11 +269,11 @@ p {
 }
 
 .left-arrow {
-  left: 0;
+  left: 10px;
 }
 
 .right-arrow {
-  right: 0;
+  right: 10px;
 }
 
 .arrow:disabled {
@@ -284,7 +284,7 @@ p {
   height: 2px;
   background-color: #000;
   width: 100%;
-  margin: 10px 0 50px 0;
+  margin: 10px 0 40px 0;
 }
 
 .btn-lista-tipoComida {
@@ -295,3 +295,21 @@ p {
   padding: 15px 25px 15px 25px;
   margin-left: 25px;
 }
+
+.btn-circle {
+  border-radius: 50%;
+  background-color: white;
+  color: black;
+  border: 1px solid black; /* Puedes agregar un borde opcional */
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-circle i {
+  font-size: 16px; /* Tamaño del ícono */
+}
+

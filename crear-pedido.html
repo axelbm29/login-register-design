@@ -43,11 +43,6 @@
         box-sizing: border-box;
       }
 
-      .column-left,
-      .column-right {
-        border: 2px solid red;
-      }
-
       .column-left {
         width: 40%;
         max-height: calc(100% - 130px - 10px);
@@ -98,8 +93,8 @@
         color: black; /* Color del ícono negro */
         border: 2px solid black; /* Borde negro más grueso */
         border-radius: 50%; /* Botón redondeado */
-        width: 50px; /* Ancho del botón */
-        height: 50px; /* Alto del botón */
+        width: 30px; /* Ancho del botón */
+        height: 30px; /* Alto del botón */
         display: flex; /* Para centrar el icono */
         justify-content: center; /* Centra horizontalmente */
         align-items: center; /* Centra verticalmente */
@@ -107,12 +102,72 @@
       }
 
       .card .btn-add i {
-        font-size: 36px; /* Tamaño del ícono (ajustado según necesidad) */
+        font-size: 20px; /* Tamaño del ícono (ajustado según necesidad) */
         font-weight: bold; /* Grosor del ícono más grueso */
       }
 
       .card .btn-add:hover {
         background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+      }
+
+      .order-summary {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin: auto;
+      }
+      .order-summary h3,
+      .order-summary h4 {
+        font-family: "Lato", sans-serif;
+        font-weight: bold;
+        margin: 0;
+        padding-bottom: 10px;
+      }
+
+      .order-details-container {
+        min-height: 230px;
+        max-height: 230px; /* Altura máxima para la tabla */
+        overflow-y: auto; /* Habilitar scrollbar vertical */
+        margin-bottom: 20px; /* Espacio inferior opcional */
+      }
+
+      .order-details {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .order-details th,
+      .order-details td {
+        text-align: center; /* Align text to the left */
+        padding: 8px; /* Add padding */
+      }
+
+      .order-actions {
+        display: flex;
+        justify-content: space-between; /* Space out the buttons */
+        margin-top: 5px;
+      }
+
+      .btn-add,
+      .btn-remove,
+      .btn-back {
+        border-radius: 50%;
+        background-color: white;
+        color: black;
+        border: 1px solid black; /* Puedes agregar un borde opcional */
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .btn-send {
+        border-radius: 10px;
+        background-color: #000;
+        color: #fff;
+        padding: 10px 50px 10px 50px;
       }
     </style>
   </head>
@@ -126,7 +181,7 @@
         />
       </div>
       <div class="user-info text-end">
-        <span style="font-weight: bold; color: #fff">Diego Otazú</span><br />
+        <span style="font-weight: bold; color: #fff;">Diego Otazú</span><br />
         <span style="color: #b3b3b3">Mozo/cajero</span>
       </div>
     </div>
@@ -134,8 +189,36 @@
     <div class="container-fluid">
       <div class="column-left">
         <!-- Contenido de la columna izquierda -->
-        <h2>Columna Izquierda</h2>
-        <p>Aquí va el contenido del 40% de la pantalla.</p>
+        <div class="order-summary">
+          <h3>Orden: #100</h3>
+          <p>FECHA: 09/10/2024</p>
+          <p>Toca un artículo para añadirlo a la orden</p>
+
+          <div class="order-details-container">
+            <table class="order-details">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Cantidad</th>
+                  <th>P. unitario</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="line"></div>
+          <p>Subtotal: <span class="subtotal" id="subtotal">s/0.00</span></p>
+          <p>Descuento: <span class="descuento" id="descuento">s/0.00</span></p>
+          <h4>Total: <span class="total" id="total">s/0.00</span></h4>
+
+          <div class="order-actions d-flex justify-content-end">
+            <button class="btn-send">
+              ENVIAR<i class="bi bi-send" style="margin-left: 10px"></i>
+            </button>
+          </div>
+        </div>
       </div>
       <div class="column-right">
         <div class="right-column">
@@ -170,7 +253,12 @@
           <!-- HAMBURGUESAS -->
           <!-- Nueva fila con 4 elementos - HAMBURGUESAS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="hamburguesas">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="hamburguesas"
+              data-name="H. Clásica"
+              data-price="10.90"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -178,12 +266,17 @@
                   alt="Alitas BBQ"
                 />
                 <div class="product-name">Clásica</div>
-                <button class="btn-add">
+                <button class="btn btn-add">
                   <i class="bi bi-plus"></i>
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="hamburguesas">
+            <div
+              class="col-6 col-md-3"
+              data-category="hamburguesas"
+              data-name="Cheese Burger"
+              data-price="12.90"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -196,7 +289,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="hamburguesas">
+            <div
+              class="col-6 col-md-3"
+              data-category="hamburguesas"
+              data-name="H. a lo Pobre"
+              data-price="13.90"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -209,7 +307,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="hamburguesas">
+            <div
+              class="col-6 col-md-3"
+              data-category="hamburguesas"
+              data-name="H. Crujiente"
+              data-price="13.90"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -226,7 +329,12 @@
 
           <!-- Nueva fila con 2 elementos - HAMBURGUESAS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="hamburguesas">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="hamburguesas"
+              data-name="H. Royal"
+              data-price="14.90"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -239,7 +347,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="hamburguesas">
+            <div
+              class="col-6 col-md-3"
+              data-category="hamburguesas"
+              data-name="H. Parrillero"
+              data-price="16.90"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -257,7 +370,12 @@
           <!-- ADICIONALES -->
           <!-- Nueva fila con 4 elementos - ADICIONALES -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="adicionales">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="adicionales"
+              data-name="Hdog. Frankfurt"
+              data-price="2.50"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -270,7 +388,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="adicionales">
+            <div
+              class="col-6 col-md-3"
+              data-category="adicionales"
+              data-name="Huevo"
+              data-price="2.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -283,7 +406,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="adicionales">
+            <div
+              class="col-6 col-md-3"
+              data-category="adicionales"
+              data-name="Cabanosi"
+              data-price="1.50"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -296,7 +424,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="adicionales">
+            <div
+              class="col-6 col-md-3"
+              data-category="adicionales"
+              data-name="Tocino"
+              data-price="1.50"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -312,7 +445,12 @@
           </div>
           <!-- Nueva fila con 2 elementos - ADICIONALES -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="adicionales">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="adicionales"
+              data-name="Queso"
+              data-price="1.50"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -325,7 +463,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="adicionales">
+            <div
+              class="col-6 col-md-3"
+              data-category="adicionales"
+              data-name="Jamon"
+              data-price="1.50"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -343,7 +486,12 @@
           <!-- ALITAS -->
           <!-- Nueva fila con 4 elementos - ALITAS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="alitas">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="alitas"
+              data-name="Alitas BBQ"
+              data-price="16.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -356,7 +504,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="alitas">
+            <div
+              class="col-6 col-md-3"
+              data-category="alitas"
+              data-name="Alitas Crujientes"
+              data-price="16.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -369,7 +522,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="alitas">
+            <div
+              class="col-6 col-md-3"
+              data-category="alitas"
+              data-name="Alitas Bufalo"
+              data-price="18.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -382,7 +540,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="alitas">
+            <div
+              class="col-6 col-md-3"
+              data-category="alitas"
+              data-name="Alitas Acevichadas"
+              data-price="18.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -398,7 +561,12 @@
           </div>
           <!-- Nueva fila con 2 elementos - ALITAS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="alitas">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="alitas"
+              data-name="Alitas a la Maracuya"
+              data-price="17.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -411,7 +579,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="alitas">
+            <div
+              class="col-6 col-md-3"
+              data-category="alitas"
+              data-name="Alitas Oriental"
+              data-price="17.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -429,7 +602,12 @@
           <!-- SALCHIPAPAS -->
           <!-- Nueva fila con 3 elementos - SALCHIPAPAS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="salchipapas">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="salchipapas"
+              data-name="Salchi Clasica"
+              data-price="10.90"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -442,7 +620,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="salchipapas">
+            <div
+              class="col-6 col-md-3"
+              data-category="salchipapas"
+              data-name="Salchi Mixta"
+              data-price="12.90"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -455,7 +638,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="salchipapas">
+            <div
+              class="col-6 col-md-3"
+              data-category="salchipapas"
+              data-name="Salchi Villa 29"
+              data-price="14.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -473,7 +661,12 @@
           <!-- PLATOS A LA CARTA -->
           <!-- Nueva fila con 4 elementos - PLATOS A LA CARTA -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="platos a la carta">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="platos a la carta"
+              data-name="Carne de Cerdo"
+              data-price="16.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -486,7 +679,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="platos a la carta">
+            <div
+              class="col-6 col-md-3"
+              data-category="platos a la carta"
+              data-name="Pollo a la plancha"
+              data-price="16.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -499,7 +697,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="platos a la carta">
+            <div
+              class="col-6 col-md-3"
+              data-category="platos a la carta"
+              data-name="Lomo saltado"
+              data-price="18.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -512,7 +715,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="platos a la carta">
+            <div
+              class="col-6 col-md-3"
+              data-category="platos a la carta"
+              data-name="Bisteck a lo pobre"
+              data-price="18.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -530,7 +738,12 @@
           <!-- PIQUEOS -->
           <!-- Nueva fila con 2 elementos - PIQUEOS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="piqueos">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="piqueos"
+              data-name="Tequeños de queso"
+              data-price="9.90"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -543,7 +756,12 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="piqueos">
+            <div
+              class="col-6 col-md-3"
+              data-category="piqueos"
+              data-name="Triologias"
+              data-price="30.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
@@ -561,10 +779,15 @@
           <!-- REFRESCOS -->
           <!-- Nueva fila con 4 elementos - REFRESCOS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="refrescos">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="refrescos"
+              data-name="Chicha"
+              data-price="8.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Chicha-morada.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -574,10 +797,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="refrescos">
+            <div
+              class="col-6 col-md-3"
+              data-category="refrescos"
+              data-name="Limonada"
+              data-price="8.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Limonada.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -587,10 +815,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="refrescos">
+            <div
+              class="col-6 col-md-3"
+              data-category="refrescos"
+              data-name="Maracuya"
+              data-price="8.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Maracuya.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -600,10 +833,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="refrescos">
+            <div
+              class="col-6 col-md-3"
+              data-category="refrescos"
+              data-name="Limonada frozen"
+              data-price="10.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Limonada-frozen.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -618,10 +856,15 @@
           <!-- REFRESCOS -->
           <!-- Nueva fila con 1 elemento - REFRESCOS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="refrescos">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="refrescos"
+              data-name="Maracuya frozen"
+              data-price="10.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Maracuya-frozen.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -636,10 +879,15 @@
           <!-- GASEOSAS -->
           <!-- Nueva fila con 3 elementos - GASEOSAS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="gaseosas">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="gaseosas"
+              data-name="Coca cola"
+              data-price="5.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Coca-Cola-500ml.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -649,10 +897,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="gaseosas">
+            <div
+              class="col-6 col-md-3"
+              data-category="gaseosas"
+              data-name="Inca kola"
+              data-price="5.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Inca-Cola-500ml.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -662,10 +915,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="gaseosas">
+            <div
+              class="col-6 col-md-3"
+              data-category="gaseosas"
+              data-name="Agua mineral"
+              data-price="3.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Agua-500ml.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -680,10 +938,15 @@
           <!-- TRAGOS -->
           <!-- Nueva fila con 4 elementos - TRAGOS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="tragos">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="tragos"
+              data-name="Pilsen"
+              data-price="8.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Pilsen.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -693,10 +956,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="tragos">
+            <div
+              class="col-6 col-md-3"
+              data-category="tragos"
+              data-name="Corona"
+              data-price="10.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Corona.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -706,10 +974,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="tragos">
+            <div
+              class="col-6 col-md-3"
+              data-category="tragos"
+              data-name="Heineken"
+              data-price="10.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Heineken.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -719,10 +992,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="tragos">
+            <div
+              class="col-6 col-md-3"
+              data-category="tragos"
+              data-name="Cuzqueña negra"
+              data-price="11.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Cuzqueña-negra.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -735,11 +1013,16 @@
           </div>
 
           <!-- Nueva fila con 4 elementos - TRAGOS -->
-          <div class="row" style="margin-left: 20px; margin-right: 10px">
+          <div
+            class="row"
+            style="margin-left: 20px; margin-right: 10px"
+            data-name="Cuzqueña trigo"
+            data-price="11.00"
+          >
             <div class="col-6 col-md-3 mb-3" data-category="tragos">
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Cuzqueña-trigo.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -749,10 +1032,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="tragos">
+            <div
+              class="col-6 col-md-3"
+              data-category="tragos"
+              data-name="Chilcano - piscano"
+              data-price="10.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Chilcano-piscano.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -762,10 +1050,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3 mb-3" data-category="tragos">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="tragos"
+              data-name="Smirnoff Manzana"
+              data-price="11.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Smirnof-Manzana.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -775,10 +1068,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3 mb-3" data-category="tragos">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="tragos"
+              data-name="Four loko"
+              data-price="15.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Four-Loko.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -793,10 +1091,15 @@
           <!-- COCTELES -->
           <!-- Nueva fila con 4 elementos - COCTELES -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="cocteles">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="cocteles"
+              data-name="Chilcano"
+              data-price="12.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Chilcano-coctel.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -806,10 +1109,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="cocteles">
+            <div
+              class="col-6 col-md-3"
+              data-category="cocteles"
+              data-name="Mojito"
+              data-price="12.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/mojito.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -819,10 +1127,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="cocteles">
+            <div
+              class="col-6 col-md-3"
+              data-category="cocteles"
+              data-name="Cuba libre"
+              data-price="12.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Cuba-libre.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -832,10 +1145,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="cocteles">
+            <div
+              class="col-6 col-md-3"
+              data-category="cocteles"
+              data-name="Pisco sour"
+              data-price="14.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Pisco-Sour.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -849,10 +1167,15 @@
 
           <!-- Nueva fila con 4 elementos - COCTELES -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="cocteles">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="cocteles"
+              data-name="Piña colada"
+              data-price="15.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Piña-colada.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -862,10 +1185,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="cocteles">
+            <div
+              class="col-6 col-md-3"
+              data-category="cocteles"
+              data-name="Daiquiri"
+              data-price="15.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Dayquiri.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -875,10 +1203,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3 mb-3" data-category="cocteles">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="cocteles"
+              data-name="Machu Picchu"
+              data-price="15.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Machu-Pichu.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -888,10 +1221,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3 mb-3" data-category="cocteles">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="cocteles"
+              data-name="Algarrobina"
+              data-price="16.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Algarrobina.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -905,10 +1243,15 @@
 
           <!-- Nueva fila con 2 elementos - COCTELES -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="cocteles">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="cocteles"
+              data-name="Laguna azul"
+              data-price="17.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Laguna-Azul.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -918,10 +1261,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="cocteles">
+            <div
+              class="col-6 col-md-3"
+              data-category="cocteles"
+              data-name="Corona Margarita"
+              data-price="25.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Corona-Margarita.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -936,10 +1284,15 @@
           <!-- VINOS -->
           <!-- Nueva fila con 3 elementos - VINOS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="vinos">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="vinos"
+              data-name="Tabernero Rose"
+              data-price="30.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Tabernero-Rose.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -949,10 +1302,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="vinos">
+            <div
+              class="col-6 col-md-3"
+              data-category="vinos"
+              data-name="Tabernero Borgoña"
+              data-price="30.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Tabernero-borgoña.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -967,10 +1325,15 @@
           <!-- JARRAS -->
           <!-- Nueva fila con 4 elementos - JARRAS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="jarras">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="jarras"
+              data-name="Cuba libre"
+              data-price="30.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Jarra-Cuba-libre.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -980,10 +1343,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3" data-category="jarras">
+            <div
+              class="col-6 col-md-3"
+              data-category="jarras"
+              data-name="Sangria"
+              data-price="30.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Jarra-sangria.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -993,10 +1361,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3 mb-3" data-category="jarras">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="jarras"
+              data-name="Chilcano"
+              data-price="35.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Jarra-chilcano.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -1006,10 +1379,15 @@
                 </button>
               </div>
             </div>
-            <div class="col-6 col-md-3 mb-3" data-category="jarras">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="jarras"
+              data-name="Pisco sour"
+              data-price="40.00"
+            >
               <div class="card">
                 <img
-                  src="img/alitas-bbq.png"
+                  src="img/Jarra-Pisco-Sour.webp"
                   class="card-img-top"
                   alt="Alitas BBQ"
                 />
@@ -1024,7 +1402,12 @@
           <!-- JUEGOS -->
           <!-- Nueva fila con 1 elemento - JUEGOS -->
           <div class="row" style="margin-left: 20px; margin-right: 10px">
-            <div class="col-6 col-md-3 mb-3" data-category="juegos">
+            <div
+              class="col-6 col-md-3 mb-3"
+              data-category="juegos"
+              data-name="Ruleta Villa 29"
+              data-price="35.00"
+            >
               <div class="card">
                 <img
                   src="img/alitas-bbq.png"
