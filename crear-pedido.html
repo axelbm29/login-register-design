@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - Pedidos</title>
+    <title>Crear pedido</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
     />
@@ -20,158 +20,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"
     />
     <link rel="stylesheet" href="estilos.css" />
-    <style>
-      body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        font-family: "Lato", sans-serif;
-      }
-
-      .top-bar {
-        height: 130px;
-        background-color: #343a40;
-        color: white;
-      }
-
-      .container-fluid {
-        display: flex;
-        flex-grow: 1;
-        margin-top: 10px;
-        gap: 10px;
-        box-sizing: border-box;
-      }
-
-      .column-left {
-        width: 40%;
-        max-height: calc(100% - 130px - 10px);
-        margin: 130px 0 0 0;
-      }
-
-      .column-right {
-        width: 60%;
-        max-height: calc(100% - 120px);
-        margin: 120px 0 0 0;
-      }
-
-      .card {
-        border: 2px solid #000; /* Borde negro para la tarjeta */
-        border-radius: 10px; /* Bordes redondeados */
-        overflow: hidden; /* Oculta el contenido que sobresale */
-        position: relative; /* Para colocar el botón en la parte superior */
-        width: 200px; /* Ancho fijo de 200px */
-        height: 120px; /* Alto fijo de 120px */
-        margin: auto; /* Centra las tarjetas dentro de la columna */
-      }
-
-      .card img {
-        width: 100%;
-        height: 100%; /* Ajusta la altura de la imagen dentro de la tarjeta */
-        object-fit: cover; /* Asegura que la imagen se ajuste a las dimensiones */
-      }
-
-      .product-name {
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%); /* Centramos horizontalmente */
-        background-color: rgba(255, 255, 255, 0.8);
-        color: #000; /* Color del texto negro */
-        font-size: 12px; /* Tamaño del texto pequeño */
-        text-align: center;
-        width: 70%; /* Ocupa casi todo el ancho de la card, pero sin salirse */
-        border-radius: 5px;
-        box-sizing: border-box;
-      }
-
-      .card .btn-add {
-        position: absolute; /* Coloca el botón en la parte inferior derecha */
-        bottom: 5px; /* Espaciado desde la parte inferior */
-        right: 5px; /* Espaciado desde la derecha */
-        background-color: white; /* Fondo blanco para el botón */
-        color: black; /* Color del ícono negro */
-        border: 2px solid black; /* Borde negro más grueso */
-        border-radius: 50%; /* Botón redondeado */
-        width: 30px; /* Ancho del botón */
-        height: 30px; /* Alto del botón */
-        display: flex; /* Para centrar el icono */
-        justify-content: center; /* Centra horizontalmente */
-        align-items: center; /* Centra verticalmente */
-        cursor: pointer; /* Cambia el cursor al pasar por encima */
-      }
-
-      .card .btn-add i {
-        font-size: 20px; /* Tamaño del ícono (ajustado según necesidad) */
-        font-weight: bold; /* Grosor del ícono más grueso */
-      }
-
-      .card .btn-add:hover {
-        background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
-      }
-
-      .order-summary {
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        margin: auto;
-      }
-      .order-summary h3,
-      .order-summary h4 {
-        font-family: "Lato", sans-serif;
-        font-weight: bold;
-        margin: 0;
-        padding-bottom: 10px;
-      }
-
-      .order-details-container {
-        min-height: 230px;
-        max-height: 230px; /* Altura máxima para la tabla */
-        overflow-y: auto; /* Habilitar scrollbar vertical */
-        margin-bottom: 20px; /* Espacio inferior opcional */
-      }
-
-      .order-details {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      .order-details th,
-      .order-details td {
-        text-align: center; /* Align text to the left */
-        padding: 8px; /* Add padding */
-      }
-
-      .order-actions {
-        display: flex;
-        justify-content: space-between; /* Space out the buttons */
-        margin-top: 5px;
-      }
-
-      .btn-add,
-      .btn-remove,
-      .btn-back {
-        border-radius: 50%;
-        background-color: white;
-        color: black;
-        border: 1px solid black; /* Puedes agregar un borde opcional */
-        width: 30px;
-        height: 30px;
-        padding: 0;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .btn-send {
-        border-radius: 10px;
-        background-color: #000;
-        color: #fff;
-        padding: 10px 50px 10px 50px;
-      }
-    </style>
   </head>
-  <body>
+  <body style="body-crear-pedido">
     <div class="top-bar d-flex justify-content-between align-items-center p-3">
       <div class="logo-container">
         <img
@@ -181,7 +31,7 @@
         />
       </div>
       <div class="user-info text-end">
-        <span style="font-weight: bold; color: #fff;">Diego Otazú</span><br />
+        <span style="font-weight: bold; color: #fff">Diego Otazú</span><br />
         <span style="color: #b3b3b3">Mozo/cajero</span>
       </div>
     </div>
@@ -259,7 +109,7 @@
               data-name="H. Clásica"
               data-price="10.90"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -277,7 +127,7 @@
               data-name="Cheese Burger"
               data-price="12.90"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -295,7 +145,7 @@
               data-name="H. a lo Pobre"
               data-price="13.90"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -313,7 +163,7 @@
               data-name="H. Crujiente"
               data-price="13.90"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -335,7 +185,7 @@
               data-name="H. Royal"
               data-price="14.90"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -353,7 +203,7 @@
               data-name="H. Parrillero"
               data-price="16.90"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -376,7 +226,7 @@
               data-name="Hdog. Frankfurt"
               data-price="2.50"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -394,7 +244,7 @@
               data-name="Huevo"
               data-price="2.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -412,7 +262,7 @@
               data-name="Cabanosi"
               data-price="1.50"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -430,7 +280,7 @@
               data-name="Tocino"
               data-price="1.50"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -451,7 +301,7 @@
               data-name="Queso"
               data-price="1.50"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -469,7 +319,7 @@
               data-name="Jamon"
               data-price="1.50"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -492,7 +342,7 @@
               data-name="Alitas BBQ"
               data-price="16.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -510,7 +360,7 @@
               data-name="Alitas Crujientes"
               data-price="16.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -528,7 +378,7 @@
               data-name="Alitas Bufalo"
               data-price="18.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -546,7 +396,7 @@
               data-name="Alitas Acevichadas"
               data-price="18.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -567,7 +417,7 @@
               data-name="Alitas a la Maracuya"
               data-price="17.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -585,7 +435,7 @@
               data-name="Alitas Oriental"
               data-price="17.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -608,7 +458,7 @@
               data-name="Salchi Clasica"
               data-price="10.90"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -626,7 +476,7 @@
               data-name="Salchi Mixta"
               data-price="12.90"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -644,7 +494,7 @@
               data-name="Salchi Villa 29"
               data-price="14.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -667,7 +517,7 @@
               data-name="Carne de Cerdo"
               data-price="16.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -685,7 +535,7 @@
               data-name="Pollo a la plancha"
               data-price="16.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -703,7 +553,7 @@
               data-name="Lomo saltado"
               data-price="18.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -721,7 +571,7 @@
               data-name="Bisteck a lo pobre"
               data-price="18.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -744,7 +594,7 @@
               data-name="Tequeños de queso"
               data-price="9.90"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -762,7 +612,7 @@
               data-name="Triologias"
               data-price="30.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -785,7 +635,7 @@
               data-name="Chicha"
               data-price="8.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Chicha-morada.webp"
                   class="card-img-top"
@@ -803,7 +653,7 @@
               data-name="Limonada"
               data-price="8.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Limonada.webp"
                   class="card-img-top"
@@ -821,7 +671,7 @@
               data-name="Maracuya"
               data-price="8.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Maracuya.webp"
                   class="card-img-top"
@@ -839,7 +689,7 @@
               data-name="Limonada frozen"
               data-price="10.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Limonada-frozen.webp"
                   class="card-img-top"
@@ -862,7 +712,7 @@
               data-name="Maracuya frozen"
               data-price="10.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Maracuya-frozen.webp"
                   class="card-img-top"
@@ -885,7 +735,7 @@
               data-name="Coca cola"
               data-price="5.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Coca-Cola-500ml.webp"
                   class="card-img-top"
@@ -903,7 +753,7 @@
               data-name="Inca kola"
               data-price="5.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Inca-Cola-500ml.webp"
                   class="card-img-top"
@@ -921,7 +771,7 @@
               data-name="Agua mineral"
               data-price="3.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Agua-500ml.webp"
                   class="card-img-top"
@@ -944,7 +794,7 @@
               data-name="Pilsen"
               data-price="8.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Pilsen.webp"
                   class="card-img-top"
@@ -962,7 +812,7 @@
               data-name="Corona"
               data-price="10.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Corona.webp"
                   class="card-img-top"
@@ -980,7 +830,7 @@
               data-name="Heineken"
               data-price="10.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Heineken.webp"
                   class="card-img-top"
@@ -998,7 +848,7 @@
               data-name="Cuzqueña negra"
               data-price="11.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Cuzqueña-negra.webp"
                   class="card-img-top"
@@ -1020,7 +870,7 @@
             data-price="11.00"
           >
             <div class="col-6 col-md-3 mb-3" data-category="tragos">
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Cuzqueña-trigo.webp"
                   class="card-img-top"
@@ -1038,7 +888,7 @@
               data-name="Chilcano - piscano"
               data-price="10.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Chilcano-piscano.webp"
                   class="card-img-top"
@@ -1056,7 +906,7 @@
               data-name="Smirnoff Manzana"
               data-price="11.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Smirnof-Manzana.webp"
                   class="card-img-top"
@@ -1074,7 +924,7 @@
               data-name="Four loko"
               data-price="15.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Four-Loko.webp"
                   class="card-img-top"
@@ -1097,7 +947,7 @@
               data-name="Chilcano"
               data-price="12.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Chilcano-coctel.webp"
                   class="card-img-top"
@@ -1115,7 +965,7 @@
               data-name="Mojito"
               data-price="12.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/mojito.webp"
                   class="card-img-top"
@@ -1133,7 +983,7 @@
               data-name="Cuba libre"
               data-price="12.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Cuba-libre.webp"
                   class="card-img-top"
@@ -1151,7 +1001,7 @@
               data-name="Pisco sour"
               data-price="14.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Pisco-Sour.webp"
                   class="card-img-top"
@@ -1173,7 +1023,7 @@
               data-name="Piña colada"
               data-price="15.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Piña-colada.webp"
                   class="card-img-top"
@@ -1191,7 +1041,7 @@
               data-name="Daiquiri"
               data-price="15.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Dayquiri.webp"
                   class="card-img-top"
@@ -1209,7 +1059,7 @@
               data-name="Machu Picchu"
               data-price="15.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Machu-Pichu.webp"
                   class="card-img-top"
@@ -1227,7 +1077,7 @@
               data-name="Algarrobina"
               data-price="16.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Algarrobina.webp"
                   class="card-img-top"
@@ -1249,7 +1099,7 @@
               data-name="Laguna azul"
               data-price="17.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Laguna-Azul.webp"
                   class="card-img-top"
@@ -1267,7 +1117,7 @@
               data-name="Corona Margarita"
               data-price="25.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Corona-Margarita.webp"
                   class="card-img-top"
@@ -1290,7 +1140,7 @@
               data-name="Tabernero Rose"
               data-price="30.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Tabernero-Rose.webp"
                   class="card-img-top"
@@ -1308,7 +1158,7 @@
               data-name="Tabernero Borgoña"
               data-price="30.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Tabernero-borgoña.webp"
                   class="card-img-top"
@@ -1331,7 +1181,7 @@
               data-name="Cuba libre"
               data-price="30.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Jarra-Cuba-libre.webp"
                   class="card-img-top"
@@ -1349,7 +1199,7 @@
               data-name="Sangria"
               data-price="30.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Jarra-sangria.webp"
                   class="card-img-top"
@@ -1367,7 +1217,7 @@
               data-name="Chilcano"
               data-price="35.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Jarra-chilcano.webp"
                   class="card-img-top"
@@ -1385,7 +1235,7 @@
               data-name="Pisco sour"
               data-price="40.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/Jarra-Pisco-Sour.webp"
                   class="card-img-top"
@@ -1408,7 +1258,7 @@
               data-name="Ruleta Villa 29"
               data-price="35.00"
             >
-              <div class="card">
+              <div class="card-producto">
                 <img
                   src="img/alitas-bbq.png"
                   class="card-img-top"
@@ -1429,123 +1279,3 @@
     <script src="js.js"></script>
   </body>
 </html>
-
-<!--
-    <div class="container-fluid pt-3">
-      <div class="row">
-        <div class="order-container">
-          <div class="left-column col-md-4 bg-light">
-            <h5>Orden: #100</h5>
-            <p>FECHA: ****</p>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Cantidad</th>
-                  <th>P. Unitario</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>H. Clásica</td>
-                  <td>1</td>
-                  <td>s/10.90</td>
-                  <td>s/10.90</td>
-                </tr>
-                <tr>
-                  <td>A. BBQ</td>
-                  <td>2</td>
-                  <td>s/16.00</td>
-                  <td>s/32.00</td>
-                </tr>
-                <tr>
-                  <td>Pollo a la plancha</td>
-                  <td>1</td>
-                  <td>s/16.00</td>
-                  <td>s/16.00</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="d-flex justify-content-between">
-              <span>Subtotal:</span>
-              <span>s/58.90</span>
-            </div>
-            <div class="d-flex justify-content-between">
-              <span>Descuentos:</span>
-              <span>s/0.00</span>
-            </div>
-            <div class="d-flex justify-content-between">
-              <strong>Total:</strong>
-              <strong>s/58.90</strong>
-            </div>
-            <div class="mt-4">
-              <button class="btn btn-success w-100 mb-2">Guardar</button>
-              <button class="btn btn-secondary w-100 mb-2">Imprimir</button>
-              <button class="btn btn-primary w-100">Enviar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="right-column col-md-8">
-          <div class="category-container position-relative">
-            <button class="arrow left-arrow" id="left-arrow">
-              <i class="bi bi-chevron-left"></i>
-            </button>
-
-            <div class="category-list d-flex mt-3" id="category-list">
-              <button class="btn-lista-tipoComida">Hamburguesas</button>
-              <button class="btn-lista-tipoComida">Adicionales</button>
-              <button class="btn-lista-tipoComida">Alitas</button>
-              <button class="btn-lista-tipoComida">Salchipapas</button>
-              <button class="btn-lista-tipoComida">Platos a la carta</button>
-              <button class="btn-lista-tipoComida">Piqueos</button>
-              <button class="btn-lista-tipoComida">Refrescos</button>
-              <button class="btn-lista-tipoComida">Gaseosas</button>
-              <button class="btn-lista-tipoComida">Tragos</button>
-              <button class="btn-lista-tipoComida">Cocteles</button>
-              <button class="btn-lista-tipoComida">Vinos</button>
-              <button class="btn-lista-tipoComida">Jarras</button>
-              <button class="btn-lista-tipoComida">Juegos</button>
-            </div>
-
-            <button class="arrow right-arrow" id="right-arrow">
-              <i class="bi bi-chevron-right"></i>
-            </button>
-          </div>
-
-          <div class="line"></div>
-          <div class="row">
-            <div class="col-6 col-md-4 mb-3">
-              <div class="card">
-                <img
-                  src="img/alitas-bbq.jpg"
-                  class="card-img-top"
-                  alt="Alitas BBQ"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Alitas BBQ</h5>
-                  <p class="card-text">s/16.00</p>
-                  <button class="btn btn-primary">Añadir</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-6 col-md-4 mb-3">
-              <div class="card">
-                <img
-                  src="img/alitas-bbq.jpg"
-                  class="card-img-top"
-                  alt="Alitas BBQ"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Alitas BBQ</h5>
-                  <p class="card-text">s/16.00</p>
-                  <button class="btn btn-primary">Añadir</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    -->
