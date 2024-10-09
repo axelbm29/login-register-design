@@ -209,22 +209,30 @@ p {
 }
 
 .no-scroll {
-  overflow: hidden;
 }
 
 .right-column {
-  margin-top: 110px;
   background-color: #8a8989;
-  height: 100vh;
+  height: 100%;
 }
 
 .left-column {
+  margin: 120px 0 20px 0px;
+}
+
+.order-container {
+  border: 2px solid #000;
+  border-radius: 15px;
   margin-top: 115px;
+  max-width: 505px;
+  background-color: #f8f9fa;
+  max-height: 580px;
 }
 
 .category-container {
   position: relative;
   width: 100%;
+  overflow-x: auto;
 }
 
 .category-list {
@@ -232,10 +240,13 @@ p {
   overflow: hidden;
   display: flex;
   white-space: nowrap;
+  margin-top: 10px;
 }
 
-.btn-lista-tipoComida {
-  margin-right: 5px;
+.btn-lista-tipoComida.selected {
+  background-color: #FF6060; /* Color de fondo cuando el botón está seleccionado */
+  color: white; /* Cambia el color del texto cuando está seleccionado */
+  border-radius: 5px;
 }
 
 .arrow {
